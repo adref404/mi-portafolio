@@ -17,7 +17,7 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fernando Celadita — Dev & Data",
+  title: "Fernando Website",
   description:
     "Portfolio de Fernando Celadita. Ingeniería de Sistemas, Data Science, IA y Desarrollo Web.",
   openGraph: {

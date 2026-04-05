@@ -27,6 +27,13 @@ const EXPERIENCE = [
     tag: "data",
   },
   {
+    role: "Voluntariado - Desarrollador Full Stack",
+    company: "Superlearner Perú",
+    period: "Jun 2025 — Actualidad",
+    desc:"Platforma para la adminitración de cursos online, control de asitencia alumnos, gestion de voluntarios y dashboards de metricas realizado con django, react y postgres.",
+    tag: "web",
+  },
+  {
     role: "Desarrollador Web Freelance",
     company: "Independiente",
     period: "Feb 2025 — Actualidad",
