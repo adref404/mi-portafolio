@@ -1,65 +1,155 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getProjects } from "@/lib/queries";
+import ProjectCard from "@/components/ProjectCard";
+import HomeHero from "@/components/HomeHero";
 
-export default function Home() {
+const SKILLS = [
+  { label: "Python", tag: "data" },
+  { label: "React / Next.js", tag: "web" },
+  { label: "PostgreSQL", tag: "backend" },
+  { label: "Machine Learning", tag: "ia" },
+  { label: "Power BI", tag: "data" },
+  { label: "Kotlin / Android", tag: "mobile" },
+  { label: "Node.js", tag: "backend" },
+  { label: "TensorFlow", tag: "ia" },
+  { label: "Docker", tag: "backend" },
+  { label: "BigQuery / GCP", tag: "data" },
+  { label: "Java / Spring Boot", tag: "backend" },
+  { label: "R + Shiny", tag: "data" },
+];
+
+const EXPERIENCE = [
+  {
+    role: "Practicante Mejora Continua",
+    company: "Latam Airlines",
+    period: "Oct 2025 — Actualidad",
+    desc: "Automatización de procesos y reportes con Google Cloud (BigQuery, Looker Studio, AppSheet). Análisis y visualización de datos para indicadores operativos.",
+    tag: "data",
+  },
+  {
+    role: "Desarrollador Web Freelance",
+    company: "Independiente",
+    period: "Feb 2025 — Actualidad",
+    desc: "Sistema de gestión de contenidos con bots para posgrado, stack MERN. Despliegue multi-servidor.",
+    tag: "web",
+  },
+  {
+    role: "Asistente TI",
+    company: "Posgrado UNMSM",
+    period: "Jun 2024 — Oct 2024",
+    desc: "Migración de portal institucional con Docker y WordPress. Módulos de visualización de datos y documentación en LaTeX.",
+    tag: "backend",
+  },
+];
+
+export default async function Home() {
+  const featured = await getProjects(undefined, undefined, true);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <HomeHero />
+
+      {/* ABOUT */}
+      <section id="about" style={{ padding: "100px 0", borderTop: "1px solid var(--border)" }}>
+        <div className="container">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 80, alignItems: "start" }}>
+            <div>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent)", letterSpacing: "0.1em", marginBottom: 16 }}>
+                {"// sobre mí"}
+              </p>
+              <h2 style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: 24 }}>
+                Construyo cosas con datos y código
+              </h2>
+              <p style={{ color: "var(--text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
+                Estudiante de Ingeniería de Sistemas en la UNMSM, con experiencia real en análisis de datos,
+                desarrollo web y automatización. Me muevo cómodo entre el frontend y el backend.
+              </p>
+              <p style={{ color: "var(--text-muted)", lineHeight: 1.8 }}>
+                Actualmente en Latam Airlines usando BigQuery y Looker Studio para mejorar procesos operativos.
+                En paralelo, desarrollo proyectos personales enfocados en IA y mobile.
+              </p>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent)", letterSpacing: "0.1em", marginBottom: 16 }}>
+                {"// stack"}
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {SKILLS.map((s) => (
+                  <span key={s.label} className={`tag-pill tag-${s.tag}`} style={{ fontSize: 13 }}>
+                    {s.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIENCE */}
+      <section id="experiencia" style={{ padding: "80px 0", borderTop: "1px solid var(--border)" }}>
+        <div className="container">
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent)", letterSpacing: "0.1em", marginBottom: 40 }}>
+            {"// experiencia"}
           </p>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {EXPERIENCE.map((e, i) => (
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "minmax(160px, 200px) 1fr", gap: 32, padding: "32px 0", borderBottom: "1px solid var(--border)", alignItems: "start" }}>
+                <div>
+                  <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--text-dim)", marginBottom: 6 }}>{e.period}</div>
+                  <span className={`tag-pill tag-${e.tag}`}>{e.tag}</span>
+                </div>
+                <div>
+                  <div style={{ fontWeight: 500, marginBottom: 4 }}>{e.role}</div>
+                  <div style={{ fontSize: 13, color: "var(--accent)", fontFamily: "var(--font-mono)", marginBottom: 10 }}>{e.company}</div>
+                  <p style={{ color: "var(--text-muted)", fontSize: 14, lineHeight: 1.7 }}>{e.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+      </section>
+
+      {/* FEATURED PROJECTS */}
+      {featured && featured.length > 0 && (
+        <section style={{ padding: "80px 0", borderTop: "1px solid var(--border)" }}>
+          <div className="container">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 40 }}>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent)", letterSpacing: "0.1em" }}>
+                {"// proyectos destacados"}
+              </p>
+              <Link href="/projects" style={{ fontSize: 13, color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+                ver todos →
+              </Link>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 20 }}>
+              {featured.map((p: any) => (
+                <ProjectCard key={p.id} project={p} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <section style={{ padding: "100px 0", borderTop: "1px solid var(--border)" }}>
+        <div className="container" style={{ textAlign: "center" }}>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--accent)", letterSpacing: "0.1em", marginBottom: 20 }}>
+            {"// hablemos"}
+          </p>
+          <h2 style={{ fontSize: "clamp(28px, 5vw, 52px)", fontWeight: 600, letterSpacing: "-0.03em", marginBottom: 16 }}>
+            ¿Tienes un proyecto en mente?
+          </h2>
+          <p style={{ color: "var(--text-muted)", maxWidth: 400, margin: "0 auto 40px" }}>
+            Estoy abierto a colaboraciones, freelance y oportunidades. Escríbeme.
+          </p>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:cgfernando.4799@gmail.com"
+            style={{ display: "inline-block", padding: "14px 36px", background: "var(--accent)", color: "#0a0a0a", borderRadius: "var(--radius)", fontWeight: 500, fontSize: 16 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            cgfernando.4799@gmail.com
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
