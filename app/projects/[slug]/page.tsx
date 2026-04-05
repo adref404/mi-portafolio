@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getProjectBySlug, getAllSlugs } from "@/lib/queries";
+import BackLink from "@/components/BackLink"
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -29,24 +30,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     <div style={{ paddingTop: 100, paddingBottom: 100, minHeight: "100vh" }}>
       <div className="container" style={{ maxWidth: 780 }}>
         {/* back */}
-        <Link
-          href="/projects"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            fontFamily: "var(--font-mono)",
-            fontSize: 13,
-            color: "var(--text-muted)",
-            marginBottom: 48,
-            transition: "color 0.2s",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.color = "var(--text)")}
-          onMouseOut={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
-        >
-          ← proyectos
-        </Link>
-
+        <BackLink />
+        
         {/* tags */}
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
           {tags.map((t: string) => (
