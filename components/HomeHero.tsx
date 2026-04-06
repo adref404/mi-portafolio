@@ -71,15 +71,14 @@ export default function HomeHero() {
           {/* CG */}
         </h1>
 
-        <p
+        <div
           className="fade-up fade-up-3"
-          style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "var(--text-muted)", maxWidth: 560, marginBottom: 48, lineHeight: 1.7 }}
+          style={{color: "var(--text-muted)", maxWidth: 560, marginBottom: 48, lineHeight: 1.7 }}
         >
-          Ingeniería de Sistemas de UNMSM · Data, IA & Desarrollo Web.
-          Actualmente en{" "}
-          <span style={{ color: "var(--text)" }}>Latam Airlines</span>{" "}
-          automatizando procesos con GCP.
-        </p>
+          <p>
+            Estudiante de Ingeniería de Sistemas en la UNMSM. Me muevo entre datos, código y automatización, aprendiendo en el camino.
+          </p>
+        </div>
 
         <div className="fade-up fade-up-4" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
           <Link
@@ -134,8 +133,8 @@ export default function HomeHero() {
           style={{ display: "flex", gap: 40, marginTop: 80, flexWrap: "wrap" }}
         >
           {[
-            { n: "9°", label: "semestre UNMSM" },
-            { n: "4+", label: "años de experiencia" },
+            // { n: "9°", label: "semestre UNMSM" },
+            { n: "3+", label: "años de experiencia" },
             { n: "6+", label: "proyectos personales" },
           ].map((s) => (
             <div key={s.n}>

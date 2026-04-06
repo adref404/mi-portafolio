@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getProjects } from "@/lib/queries";
 import ProjectCard from "@/components/ProjectCard";
 import HomeHero from "@/components/HomeHero";
+import { color } from "framer-motion";
 
 const SKILLS = [
   { label: "Python", tag: "data" },
@@ -68,12 +69,10 @@ export default async function Home() {
                 Construyo cosas con datos y código
               </h2>
               <p style={{ color: "var(--text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
-                Estudiante de Ingeniería de Sistemas en la UNMSM, con experiencia real en análisis de datos,
-                desarrollo web y automatización. Me muevo cómodo entre el frontend y el backend.
-              </p>
-              <p style={{ color: "var(--text-muted)", lineHeight: 1.8 }}>
-                Actualmente en Latam Airlines usando BigQuery y Looker Studio para mejorar procesos operativos.
-                En paralelo, desarrollo proyectos personales enfocados en IA y mobile.
+                Estudio Ingeniería de Sistemas en la UNMSM. He trabajado en datos, desarrollo web y automatización; 
+                como practicante en <b style={{color: "white"}}>Latam Airlines</b> con Google Cloud, desarrollador
+                <b style={{color: "white"}}> full stack</b> en <b style={{color: "white"}}> Superlearner Perú</b> y freelance en proyectos web. 
+                Cada rol me fue sumando herramientas y criterio.
               </p>
             </div>
             <div>
